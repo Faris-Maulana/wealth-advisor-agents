@@ -1,0 +1,27 @@
+{
+  "approved": true,
+  "reviewer": "j.whitfield",
+  "notes": "Structuring and Meridian wire escalated to compliance (case AML-2291).",
+  "finding_decisions": [
+    {
+      "fingerprint": "aeae4e8cc7571d49",
+      "action": "confirm",
+      "note": "Escalated"
+    },
+    {
+      "fingerprint": "0a54a71575d397a8",
+      "action": "confirm"
+    },
+    {
+      "fingerprint": "1d436a72396a1d54",
+      "action": "dismiss",
+      "note": "Client confirmed two separate prescriptions"
+    },
+    {
+      "fingerprint": "56c5c68358dfac4d",
+      "action": "override",
+      "severity": "low",
+      "note": "Review meeting booked"
+    }
+  ]
+}

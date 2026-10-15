@@ -1,0 +1,502 @@
+{
+  "run_id": "run-20261015-015448-52520c",
+  "client_id": "C003",
+  "client_name": "Priya Nair",
+  "generated_at": "2026-10-15T01:54:48.908+00:00",
+  "status": "completed",
+  "as_of": "2026-09-30",
+  "profile": {
+    "client_id": "C003",
+    "risk_profile": "moderate",
+    "risk_profile_updated": "2026-02-02",
+    "kyc_status": "verified",
+    "kyc_expiry": "2027-02-02",
+    "age": 29,
+    "advisor": "L. Romero",
+    "segment": "emerging",
+    "investment_horizon_years": 30,
+    "usual_countries": [
+      "US"
+    ],
+    "goals": [
+      "home purchase in 5y"
+    ],
+    "last_contact": "2026-05-30",
+    "source": "crm",
+    "stale": false,
+    "fetched_at": "2026-10-15T01:54:48+00:00"
+  },
+  "portfolio": {
+    "total_market_value": 93085.0,
+    "invested_value": 92735.0,
+    "cash_value": 350.0,
+    "allocation": {
+      "equity": 0.8444,
+      "fixed_income": 0.0,
+      "cash": 0.0038,
+      "alternative": 0.1519
+    },
+    "target_allocation": {
+      "equity": 0.6,
+      "fixed_income": 0.3,
+      "cash": 0.05,
+      "alternative": 0.05
+    },
+    "sector_weights": {
+      "consumer_discretionary": 0.4319,
+      "technology": 0.4124,
+      "digital_assets": 0.1519
+    },
+    "position_weights": {
+      "TSLA": 0.4319,
+      "NVDA": 0.2152,
+      "ARKK": 0.1972,
+      "IBIT": 0.1519
+    },
+    "position_sectors": {
+      "TSLA": "consumer_discretionary",
+      "NVDA": "technology",
+      "ARKK": "technology",
+      "IBIT": "digital_assets"
+    },
+    "unrealized_pnl": 18235.0,
+    "weighted_volatility": 0.5871,
+    "priced_with_fallback": [],
+    "excluded_holdings": []
+  },
+  "cashflow": {
+    "months": [
+      "2026-04",
+      "2026-05",
+      "2026-06",
+      "2026-07",
+      "2026-08",
+      "2026-09"
+    ],
+    "monthly_income": {
+      "2026-04": 9200.0,
+      "2026-05": 9200.0,
+      "2026-06": 9200.0,
+      "2026-07": 9200.0,
+      "2026-08": 0.0,
+      "2026-09": 1200.0
+    },
+    "monthly_spend": {
+      "2026-04": 4239.74,
+      "2026-05": 3771.69,
+      "2026-06": 3903.28,
+      "2026-07": 3891.98,
+      "2026-08": 4209.09,
+      "2026-09": 9773.54
+    },
+    "avg_monthly_income": 6333.33,
+    "avg_monthly_spend": 4964.89,
+    "savings_rate": 0.2161,
+    "top_spend_categories": {
+      "housing": 14400.0,
+      "p2p_transfer": 5450.0,
+      "dining": 3879.79,
+      "groceries": 3035.64,
+      "utilities": 1511.75,
+      "shopping": 1144.68
+    },
+    "liquid_assets": 5050.0,
+    "cash_buffer_months": 1.25,
+    "transaction_count": 150
+  },
+  "risk": {
+    "value": 0.8476,
+    "band": "high",
+    "drivers": [
+      "Burst of 5 outbound transfers in 48h (high)",
+      "Portfolio volatility 59% exceeds moderate ceiling (high)",
+      "Income down 93% vs baseline (high)"
+    ],
+    "previous_value": null,
+    "previous_band": null,
+    "delta": null
+  },
+  "anomalies": [
+    {
+      "type": "velocity_burst",
+      "category": "transaction",
+      "severity": "high",
+      "score": 1.0,
+      "title": "Burst of 5 outbound transfers in 48h",
+      "description": "5 transfers totalling $5,450 to 5 counterparties (108% of liquid assets). Possible scam/account-takeover pattern.",
+      "evidence": {
+        "key": [
+          "velocity",
+          [
+            "C003-T0146",
+            "C003-T0147",
+            "C003-T0148",
+            "C003-T0149",
+            "C003-T0150"
+          ]
+        ],
+        "total": 5450.0,
+        "counterparties": [
+          "J. Alvarez",
+          "K. Osei",
+          "M. Ruiz",
+          "S. Patel",
+          "T. Nguyen"
+        ],
+        "pct_of_liquid": 1.0792,
+        "corroborating_signals": [
+          {
+            "type": "new_counterparty",
+            "severity": "medium",
+            "detail": "High-value payment to new counterparty T. Nguyen"
+          }
+        ]
+      },
+      "transaction_ids": [
+        "C003-T0146",
+        "C003-T0147",
+        "C003-T0148",
+        "C003-T0149",
+        "C003-T0150"
+      ],
+      "fingerprint": "66119b5bd2e16194",
+      "status": "new",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "excess_volatility",
+      "category": "portfolio",
+      "severity": "high",
+      "score": 1.0,
+      "title": "Portfolio volatility 59% exceeds moderate ceiling",
+      "description": "Weighted volatility of 59% vs a 15% ceiling (upper-bound estimate assuming perfect correlation).",
+      "evidence": {
+        "key": [
+          "vol",
+          "moderate"
+        ],
+        "volatility": 0.5871,
+        "ceiling": 0.15
+      },
+      "transaction_ids": [],
+      "fingerprint": "da70b54a4f1e077c",
+      "status": "new",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "income_drop",
+      "category": "cashflow",
+      "severity": "high",
+      "score": 0.967391,
+      "title": "Income down 93% vs baseline",
+      "description": "Recurring income averaged $600/month over the last 2 months vs a baseline of $9,200/month. Possible job change or life event.",
+      "evidence": {
+        "key": [
+          "income_drop",
+          "2026-09"
+        ],
+        "baseline": 9200.0,
+        "recent_avg": 600.0,
+        "drop_pct": 0.9348,
+        "income_categories": [
+          "dividend",
+          "freelance",
+          "interest",
+          "pension",
+          "rental_income",
+          "salary",
+          "social_security"
+        ]
+      },
+      "transaction_ids": [],
+      "fingerprint": "7ffc8bfc142dd796",
+      "status": "new",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "allocation_drift",
+      "category": "portfolio",
+      "severity": "high",
+      "score": 0.9,
+      "title": "Allocation drift: fixed income -30% vs moderate target",
+      "description": "Fixed Income is 0% vs a target of 30% for a moderate profile.",
+      "evidence": {
+        "key": [
+          "drift",
+          "moderate"
+        ],
+        "drifts": {
+          "equity": 0.2444,
+          "fixed_income": -0.3,
+          "cash": -0.0462,
+          "alternative": 0.1019
+        },
+        "actual": {
+          "equity": 0.8444,
+          "fixed_income": 0.0,
+          "cash": 0.0038,
+          "alternative": 0.1519
+        },
+        "target": {
+          "equity": 0.6,
+          "fixed_income": 0.3,
+          "cash": 0.05,
+          "alternative": 0.05
+        }
+      },
+      "transaction_ids": [],
+      "fingerprint": "c6257970f04e16a1",
+      "status": "new",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "concentration_position",
+      "category": "portfolio",
+      "severity": "high",
+      "score": 0.8638,
+      "title": "TSLA is 43% of the portfolio",
+      "description": "Single-name position above the 20% concentration limit.",
+      "evidence": {
+        "key": [
+          "conc",
+          "TSLA"
+        ],
+        "ticker": "TSLA",
+        "weight": 0.4319,
+        "limit": 0.2
+      },
+      "transaction_ids": [],
+      "fingerprint": "6906b345a3559c6b",
+      "status": "new",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "suitability_mismatch",
+      "category": "compliance",
+      "severity": "high",
+      "score": 0.8,
+      "title": "Portfolio is aggressive but client profile is moderate",
+      "description": "Growth assets are 100% of the portfolio, consistent with an aggressive profile; the documented risk tolerance is moderate.",
+      "evidence": {
+        "key": [
+          "suitability",
+          "moderate",
+          "aggressive"
+        ],
+        "stated": "moderate",
+        "implied": "aggressive",
+        "growth_weight": 0.9963
+      },
+      "transaction_ids": [],
+      "fingerprint": "dc97160ff9ac9f64",
+      "status": "new",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "low_cash_buffer",
+      "category": "cashflow",
+      "severity": "medium",
+      "score": 0.7,
+      "title": "Cash buffer only 1.2 months of spending",
+      "description": "Liquid assets of $5,050 cover 1.2 months of typical spend; target is at least 3 months.",
+      "evidence": {
+        "key": [
+          "low_cash_buffer"
+        ],
+        "months": 1.25,
+        "liquid_assets": 5050.0,
+        "target_months": 3.0
+      },
+      "transaction_ids": [],
+      "fingerprint": "7d3cb016fc1155b6",
+      "status": "new",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "concentration_sector",
+      "category": "portfolio",
+      "severity": "medium",
+      "score": 0.64785,
+      "title": "Consumer Discretionary sector is 43% of the portfolio",
+      "description": "Sector exposure above the 40% limit.",
+      "evidence": {
+        "key": [
+          "sector",
+          "consumer_discretionary"
+        ],
+        "sector": "consumer_discretionary",
+        "weight": 0.4319,
+        "limit": 0.4
+      },
+      "transaction_ids": [],
+      "fingerprint": "21abf805d5ea7a2b",
+      "status": "new",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "concentration_sector",
+      "category": "portfolio",
+      "severity": "medium",
+      "score": 0.6186,
+      "title": "Technology sector is 41% of the portfolio",
+      "description": "Sector exposure above the 40% limit.",
+      "evidence": {
+        "key": [
+          "sector",
+          "technology"
+        ],
+        "sector": "technology",
+        "weight": 0.4124,
+        "limit": 0.4
+      },
+      "transaction_ids": [],
+      "fingerprint": "848e2b9390305fab",
+      "status": "new",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "concentration_position",
+      "category": "portfolio",
+      "severity": "medium",
+      "score": 0.4304,
+      "title": "NVDA is 22% of the portfolio",
+      "description": "Single-name position above the 20% concentration limit.",
+      "evidence": {
+        "key": [
+          "conc",
+          "NVDA"
+        ],
+        "ticker": "NVDA",
+        "weight": 0.2152,
+        "limit": 0.2
+      },
+      "transaction_ids": [],
+      "fingerprint": "d32b6807631612f2",
+      "status": "new",
+      "reviewer_note": null,
+      "original_severity": null
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "R1",
+      "priority": "P1",
+      "category": "compliance",
+      "action": "Contact the client through a verified channel to confirm 5 flagged transaction(s) (~$5,450). If unconfirmed, freeze outbound transfers and escalate to compliance.",
+      "rationale": "Burst of 5 outbound transfers in 48h",
+      "linked_findings": [
+        "66119b5bd2e16194"
+      ],
+      "requires_approval": true
+    },
+    {
+      "id": "R2",
+      "priority": "P1",
+      "category": "suitability",
+      "action": "Schedule a risk-profile review meeting and re-run the suitability questionnaire before any rebalancing trades.",
+      "rationale": "Portfolio is aggressive but client profile is moderate",
+      "linked_findings": [
+        "dc97160ff9ac9f64"
+      ],
+      "requires_approval": false
+    },
+    {
+      "id": "R3",
+      "priority": "P1",
+      "category": "portfolio",
+      "action": "Prepare a rebalancing proposal: trim TSLA, NVDA to below the single-name limit; rebalance toward the moderate target (equity 60%, fixed income 30%, cash 5%, alternative 5%). Use tax-lot selection to minimise realised gains.",
+      "rationale": "Portfolio volatility 59% exceeds moderate ceiling; Allocation drift: fixed income -30% vs moderate target; TSLA is 43% of the portfolio; Consumer Discretionary sector is 43% of the portfolio; Technology sector is 41% of the portfolio; NVDA is 22% of the portfolio",
+      "linked_findings": [
+        "da70b54a4f1e077c",
+        "c6257970f04e16a1",
+        "6906b345a3559c6b",
+        "21abf805d5ea7a2b",
+        "848e2b9390305fab",
+        "d32b6807631612f2"
+      ],
+      "requires_approval": true
+    },
+    {
+      "id": "R4",
+      "priority": "P1",
+      "category": "financial_planning",
+      "action": "Reach out to understand the income change (job change / life event) and revise the cash-flow plan and contribution schedule accordingly.",
+      "rationale": "Income down 93% vs baseline",
+      "linked_findings": [
+        "7ffc8bfc142dd796"
+      ],
+      "requires_approval": false
+    },
+    {
+      "id": "R5",
+      "priority": "P2",
+      "category": "financial_planning",
+      "action": "Build the emergency fund to 3 months of spending (~$14,895; gap ~$9,845). Pause discretionary investment contributions until the buffer is restored.",
+      "rationale": "Cash buffer only 1.2 months of spending",
+      "linked_findings": [
+        "7d3cb016fc1155b6"
+      ],
+      "requires_approval": false
+    }
+  ],
+  "narrative": "Priya's overall risk is HIGH (score 85/100). Key findings: Burst of 5 outbound transfers in 48h [high]; Portfolio volatility 59% exceeds moderate ceiling [high]; Income down 93% vs baseline [high]; Allocation drift: fixed income -30% vs moderate target [high]; TSLA is 43% of the portfolio [high]. Most urgent action (P1): Contact the client through a verified channel to confirm 5 flagged transaction(s) (~$5,450). If unconfirmed, freeze outbound transfers and escalate to compliance.",
+  "narrative_source": "template",
+  "review": {
+    "required": true,
+    "decision": {
+      "approved": true,
+      "reviewer": "auto-policy",
+      "notes": "Auto-approved by policy (non-interactive run); requires human sign-off before any client-facing action.",
+      "finding_decisions": [],
+      "decided_at": "2026-10-15T01:54:48+00:00"
+    },
+    "applied": [],
+    "ignored_fingerprints": [],
+    "reasons": [
+      "6 finding(s) at or above 'high' severity",
+      "risk band 'high' at or above 'elevated'"
+    ]
+  },
+  "analysis_notes": [],
+  "data_quality": [],
+  "degraded_sources": [],
+  "execution_trace": [
+    {
+      "step": "fetch",
+      "agent": "data_fetcher",
+      "status": "ok",
+      "started_at": "2026-10-15T01:54:48.887+00:00",
+      "duration_ms": 5.38,
+      "warnings": [],
+      "error": null
+    },
+    {
+      "step": "analyze",
+      "agent": "analyzer",
+      "status": "ok",
+      "started_at": "2026-10-15T01:54:48.893+00:00",
+      "duration_ms": 8.2,
+      "warnings": [],
+      "error": null
+    },
+    {
+      "step": "advise",
+      "agent": "advisor",
+      "status": "ok",
+      "started_at": "2026-10-15T01:54:48.906+00:00",
+      "duration_ms": 1.02,
+      "warnings": [],
+      "error": null
+    }
+  ],
+  "error": null
+}

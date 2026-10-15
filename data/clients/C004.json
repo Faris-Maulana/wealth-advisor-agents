@@ -1,0 +1,314 @@
+{
+  "client_id": "C004",
+  "name": "Marcus Oyelaran",
+  "as_of": "2026-09-30",
+  "base_currency": "USD",
+  "home_country": "US",
+  "accounts": [
+    {
+      "account_id": "C004-CHK",
+      "type": "checking",
+      "balance": 12800.0,
+      "currency": "USD"
+    },
+    {
+      "account_id": "C004-SAV",
+      "type": "savings",
+      "balance": null,
+      "currency": "USD"
+    }
+  ],
+  "holdings": [
+    {
+      "ticker": "VTI",
+      "quantity": 150,
+      "cost_basis": 36000
+    },
+    {
+      "ticker": "PRIVCO",
+      "quantity": 1000,
+      "cost_basis": 25000
+    },
+    {
+      "ticker": "BND",
+      "quantity": -10,
+      "cost_basis": 700
+    }
+  ],
+  "transactions": [
+    {
+      "txn_id": "C004-T0001",
+      "timestamp": "2026-04-01T06:00:00",
+      "amount": 7200.0,
+      "currency": "USD",
+      "category": "salary",
+      "counterparty": "Atlas Logistics",
+      "channel": "ach",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0002",
+      "timestamp": "2026-04-02T09:00:00",
+      "amount": -2800.0,
+      "currency": "USD",
+      "category": "housing",
+      "counterparty": "Elm Street Rentals",
+      "channel": "ach",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0003",
+      "timestamp": "2026-04-09T13:00:00",
+      "amount": -164.87,
+      "currency": "USD",
+      "category": "groceries",
+      "counterparty": "FreshMart",
+      "channel": "card",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0004",
+      "timestamp": "2026-05-01T06:00:00",
+      "amount": 7200.0,
+      "currency": "USD",
+      "category": "salary",
+      "counterparty": "Atlas Logistics",
+      "channel": "ach",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0005",
+      "timestamp": "2026-05-02T09:00:00",
+      "amount": -2800.0,
+      "currency": "USD",
+      "category": "housing",
+      "counterparty": "Elm Street Rentals",
+      "channel": "ach",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0006",
+      "timestamp": "2026-05-09T13:00:00",
+      "amount": -218.99,
+      "currency": "USD",
+      "category": "groceries",
+      "counterparty": "FreshMart",
+      "channel": "card",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0007",
+      "timestamp": "2026-06-01T06:00:00",
+      "amount": 7200.0,
+      "currency": "USD",
+      "category": "salary",
+      "counterparty": "Atlas Logistics",
+      "channel": "ach",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0008",
+      "timestamp": "2026-06-02T09:00:00",
+      "amount": -2800.0,
+      "currency": "USD",
+      "category": "housing",
+      "counterparty": "Elm Street Rentals",
+      "channel": "ach",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0009",
+      "timestamp": "2026-06-09T13:00:00",
+      "amount": -150.55,
+      "currency": "USD",
+      "category": "groceries",
+      "counterparty": "FreshMart",
+      "channel": "card",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0010",
+      "timestamp": "2026-07-01T06:00:00",
+      "amount": 7200.0,
+      "currency": "USD",
+      "category": "salary",
+      "counterparty": "Atlas Logistics",
+      "channel": "ach",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0011",
+      "timestamp": "2026-07-02T09:00:00",
+      "amount": -2800.0,
+      "currency": "USD",
+      "category": "housing",
+      "counterparty": "Elm Street Rentals",
+      "channel": "ach",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0012",
+      "timestamp": "2026-07-09T13:00:00",
+      "amount": -165.89,
+      "currency": "USD",
+      "category": "groceries",
+      "counterparty": "FreshMart",
+      "channel": "card",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0013",
+      "timestamp": "2026-08-01T06:00:00",
+      "amount": 7200.0,
+      "currency": "USD",
+      "category": "salary",
+      "counterparty": "Atlas Logistics",
+      "channel": "ach",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0014",
+      "timestamp": "2026-08-02T09:00:00",
+      "amount": -2800.0,
+      "currency": "USD",
+      "category": "housing",
+      "counterparty": "Elm Street Rentals",
+      "channel": "ach",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0015",
+      "timestamp": "2026-08-09T13:00:00",
+      "amount": -251.45,
+      "currency": "USD",
+      "category": "groceries",
+      "counterparty": "FreshMart",
+      "channel": "card",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0016",
+      "timestamp": "2026-09-01T06:00:00",
+      "amount": 7200.0,
+      "currency": "USD",
+      "category": "salary",
+      "counterparty": "Atlas Logistics",
+      "channel": "ach",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0017",
+      "timestamp": "2026-09-02T09:00:00",
+      "amount": -2800.0,
+      "currency": "USD",
+      "category": "housing",
+      "counterparty": "Elm Street Rentals",
+      "channel": "ach",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0018",
+      "timestamp": "2026-09-09T13:00:00",
+      "amount": -206.57,
+      "currency": "USD",
+      "category": "groceries",
+      "counterparty": "FreshMart",
+      "channel": "card",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0019",
+      "timestamp": "2026-06-14T12:00:00",
+      "amount": -640.0,
+      "currency": "EUR",
+      "category": "travel",
+      "counterparty": "Hotel Adlon",
+      "channel": "card",
+      "country": "DE",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0020",
+      "timestamp": "2026-07-03T19:00:00",
+      "amount": -210.0,
+      "currency": "SGD",
+      "category": "dining",
+      "counterparty": "Marina Bay Grill",
+      "channel": "card",
+      "country": "SG",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0021",
+      "timestamp": "2026-07-04T10:00:00",
+      "amount": -99.0,
+      "currency": "XYZ",
+      "category": "shopping",
+      "counterparty": "Unknown FX Merchant",
+      "channel": "card",
+      "country": "ZZ",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0022",
+      "timestamp": "2026-08-01T10:00:00",
+      "currency": "USD",
+      "category": "shopping",
+      "counterparty": "Amazon",
+      "channel": "card",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0023",
+      "timestamp": "2026-13-45T99:00:00",
+      "amount": -55.0,
+      "currency": "USD",
+      "category": "dining",
+      "counterparty": "Pasta Bar",
+      "channel": "card",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0024",
+      "timestamp": "2026-08-05T10:00:00",
+      "amount": "not-a-number",
+      "currency": "USD",
+      "category": "shopping",
+      "counterparty": "Target",
+      "channel": "card",
+      "country": "US",
+      "account_id": "C004-CHK"
+    },
+    {
+      "txn_id": "C004-T0004",
+      "timestamp": "2026-05-01T06:00:00",
+      "amount": 7200.0,
+      "currency": "USD",
+      "category": "salary",
+      "counterparty": "Atlas Logistics",
+      "channel": "ach",
+      "country": "US",
+      "account_id": "C004-CHK"
+    }
+  ]
+}

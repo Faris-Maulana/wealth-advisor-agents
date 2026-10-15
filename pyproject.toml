@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wealth-advisor-agents"
+version = "1.0.0"
+description = "Lightweight multi-agent Wealth Advisor Assistant: orchestration, tool abstraction, anomaly detection, HITL review and memory."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Faris Maulana" }]
+license = { text = "MIT" }
+dependencies = []  # core runs on the standard library only (also in the browser via Pyodide)
+
+[project.optional-dependencies]
+api = ["fastapi>=0.110", "uvicorn>=0.29"]
+dev = ["pytest>=8", "httpx>=0.27", "fastapi>=0.110"]
+
+[project.scripts]
+wealth-advisor = "wealth_advisor.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["wealth_advisor*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]
+addopts = "-q"

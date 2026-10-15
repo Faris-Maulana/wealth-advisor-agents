@@ -1,0 +1,32 @@
+{
+  "run_id": "run-20261015-015513-b79d4c",
+  "client_id": "C999",
+  "client_name": "C999",
+  "generated_at": "2026-10-15T01:55:13.870+00:00",
+  "status": "failed",
+  "as_of": null,
+  "profile": null,
+  "portfolio": null,
+  "cashflow": null,
+  "risk": null,
+  "anomalies": [],
+  "recommendations": [],
+  "narrative": "",
+  "narrative_source": "template",
+  "review": {},
+  "analysis_notes": [],
+  "data_quality": [],
+  "degraded_sources": [],
+  "execution_trace": [
+    {
+      "step": "fetch",
+      "agent": "data_fetcher",
+      "status": "failed",
+      "started_at": "2026-10-15T01:55:13.869+00:00",
+      "duration_ms": 0.22,
+      "warnings": [],
+      "error": "cannot load financial data for 'C999': no financial data file for client 'C999'"
+    }
+  ],
+  "error": "data fetch failed: cannot load financial data for 'C999': no financial data file for client 'C999'"
+}

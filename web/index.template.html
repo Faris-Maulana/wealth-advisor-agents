@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wealth Advisor Agents</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%232856d8%27/%3E%3Cpath d=%27M7 22l6-7 5 4 7-9%27 stroke=%27white%27 stroke-width=%273%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
+<meta name="description" content="Multi-agent Wealth Advisor Assistant: orchestrator, data fetcher, analyzer and advisor agents with anomaly detection, human-in-the-loop review and memory. Runs the real Python code in your browser.">
+<style>
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --panel-2: #f1f3f6; --text: #14181f; --muted: #5b6472; --border: #dfe3e9;
+  --accent: #2856d8; --accent-ink: #ffffff; --ok: #1d8a4e; --warn: #b7791f; --bad: #c53030; --crit: #8b1c1c;
+  --sev-low: #6b7280; --sev-medium: #b7791f; --sev-high: #d9480f; --sev-critical: #c53030;
+  --code-bg: #0f172a; --code-text: #e2e8f0; --shadow: 0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1117; --panel: #151b23; --panel-2: #1c2430; --text: #e6edf3; --muted: #9aa5b4; --border: #2a3441;
+    --accent: #6b8cff; --accent-ink: #0d1117; --ok: #3fb975; --warn: #e3a33b; --bad: #f06a6a; --crit: #ff8a8a;
+    --sev-low: #9aa5b4; --sev-medium: #e3a33b; --sev-high: #ff8c42; --sev-critical: #ff6b6b;
+    --code-bg: #0a0e14; --shadow: none;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1117; --panel: #151b23; --panel-2: #1c2430; --text: #e6edf3; --muted: #9aa5b4; --border: #2a3441;
+  --accent: #6b8cff; --accent-ink: #0d1117; --ok: #3fb975; --warn: #e3a33b; --bad: #f06a6a; --crit: #ff8a8a;
+  --sev-low: #9aa5b4; --sev-medium: #e3a33b; --sev-high: #ff8c42; --sev-critical: #ff6b6b;
+  --code-bg: #0a0e14; --shadow: none;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--text); font: 15px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+a { color: var(--accent); }
+header { padding: 20px 16px 8px; max-width: 1280px; margin: 0 auto; display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
+header h1 { margin: 0; font-size: 22px; letter-spacing: -.01em; }
+header p { margin: 4px 0 0; color: var(--muted); max-width: 760px; }
+.links { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.btn { appearance: none; border: 1px solid var(--border); background: var(--panel); color: var(--text); padding: 8px 14px; border-radius: 8px; font: inherit; cursor: pointer; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.btn.danger { color: var(--bad); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+main { max-width: 1280px; margin: 0 auto; padding: 8px 16px 40px; display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 16px; }
+@media (max-width: 900px) { main { grid-template-columns: minmax(0, 1fr); } }
+.panel { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px; box-shadow: var(--shadow); min-width: 0; }
+.panel h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 10px; }
+.stack > * + * { margin-top: 16px; }
+.clients { display: grid; gap: 8px; }
+.client { text-align: left; border: 1px solid var(--border); background: var(--panel-2); border-radius: 10px; padding: 10px 12px; cursor: pointer; color: var(--text); font: inherit; }
+.client[aria-pressed="true"] { border-color: var(--accent); outline: 2px solid color-mix(in srgb, var(--accent) 30%, transparent); }
+.client b { display: block; }
+.client small { color: var(--muted); }
+label.field { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+select, input[type=text] { font: inherit; color: var(--text); background: var(--panel-2); border: 1px solid var(--border); border-radius: 8px; padding: 7px 9px; width: 100%; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+#status { padding: 10px 12px; border-radius: 8px; background: var(--panel-2); font-size: 14px; }
+.pipeline { display: flex; gap: 6px; flex-wrap: wrap; align-items: stretch; }
+.node { flex: 1 1 120px; min-width: 110px; border: 1px solid var(--border); border-radius: 10px; padding: 10px; background: var(--panel-2); position: relative; }
+.node b { display: block; font-size: 14px; }
+.node small { color: var(--muted); display: block; }
+.node .st { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.st-ok { color: var(--ok); } .st-degraded { color: var(--warn); } .st-failed { color: var(--bad); } .st-pending { color: var(--accent); } .st-skipped, .st-idle { color: var(--muted); }
+.node.ok { border-color: color-mix(in srgb, var(--ok) 55%, var(--border)); }
+.node.degraded { border-color: color-mix(in srgb, var(--warn) 60%, var(--border)); }
+.node.failed { border-color: var(--bad); }
+.node.pending { border-color: var(--accent); }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.kpi { background: var(--panel-2); border-radius: 10px; padding: 12px; }
+.kpi .v { font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+.kpi .l { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.band-low { color: var(--ok); } .band-moderate { color: var(--warn); } .band-elevated { color: var(--sev-high); } .band-high { color: var(--sev-critical); }
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 14px; overflow-x: auto; }
+.tab { border: 0; background: none; color: var(--muted); padding: 8px 12px; font: inherit; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; }
+.tab[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+.finding { border: 1px solid var(--border); border-left: 4px solid var(--sev-low); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; background: var(--panel); }
+.finding.sev-medium { border-left-color: var(--sev-medium); } .finding.sev-high { border-left-color: var(--sev-high); } .finding.sev-critical { border-left-color: var(--sev-critical); }
+.finding.inactive { opacity: .6; }
+.finding .title { font-weight: 600; }
+.chip { display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; padding: 2px 7px; border-radius: 999px; background: var(--panel-2); color: var(--muted); margin-right: 4px; }
+.chip.sev-medium { color: var(--sev-medium); } .chip.sev-high { color: var(--sev-high); } .chip.sev-critical { color: var(--sev-critical); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+.table-wrap { overflow-x: auto; }
+.narr { background: var(--panel-2); border-radius: 10px; padding: 12px 14px; }
+pre { background: var(--code-bg); color: var(--code-text); padding: 12px; border-radius: 8px; overflow: auto; font-size: 12px; max-height: 520px; margin: 0; }
+.review { border: 2px solid var(--accent); }
+.review .finding { display: grid; gap: 8px; }
+.decision { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; font-size: 14px; }
+.decision label { display: inline-flex; gap: 4px; align-items: center; }
+.bar { height: 8px; border-radius: 4px; background: var(--panel-2); overflow: hidden; }
+.bar > span { display: block; height: 100%; background: var(--accent); }
+.lvl-WARNING { color: var(--warn); } .lvl-ERROR { color: var(--bad); } .lvl-INFO { color: var(--text); } .lvl-DEBUG { color: var(--muted); }
+.empty { color: var(--muted); padding: 24px; text-align: center; }
+.hidden { display: none !important; }
+footer { max-width: 1280px; margin: 0 auto; padding: 0 16px 32px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Wealth Advisor Assistant · Multi-Agent Demo</h1>
+    <p>Orchestrator → Data Fetcher → Analyzer → <b>Human review</b> → Advisor. This page runs the project's actual Python package in your browser (Pyodide/WebAssembly): same agents, tools, anomaly detectors, retries, circuit breakers and memory as the CLI.</p>
+  </div>
+  <div class="links">
+    <a class="btn" href="__REPO_URL__" target="_blank" rel="noopener">Source on GitHub</a>
+    <button class="btn" id="themeBtn" type="button" title="Toggle theme">◐ Theme</button>
+  </div>
+</header>
+
+<main>
+  <aside class="stack">
+    <section class="panel">
+      <h2>1 · Client</h2>
+      <div class="clients" id="clients"><div class="muted small">Loading Python runtime…</div></div>
+    </section>
+    <section class="panel stack">
+      <h2>2 · Failure injection</h2>
+      <div class="grid2">
+        <label class="field">CRM API
+          <select id="crmFault"></select></label>
+        <label class="field">Market data API
+          <select id="marketFault"></select></label>
+      </div>
+      <p class="small muted" style="margin:0">transient = 503 twice then recovers (retry) · down = outage (circuit breaker + cache fallback) · slow = timeout · corrupt = contract violation</p>
+      <label class="field">Human review
+        <select id="reviewMode">
+          <option value="pause">Pause for my review (HITL)</option>
+          <option value="auto">Auto-approve by policy</option>
+        </select></label>
+      <button class="btn primary" id="runBtn" type="button" disabled>Run analysis</button>
+      <div id="status">Booting Python runtime (first load ≈ 10 MB, cached afterwards)…</div>
+    </section>
+    <section class="panel">
+      <h2>Long-term memory</h2>
+      <div id="memory" class="small muted">Run a client to populate memory. Run the same client twice to see risk deltas, recurring findings and suppressed false positives.</div>
+      <div class="row" style="margin-top:10px"><button class="btn danger" id="resetBtn" type="button" disabled>Reset memory</button></div>
+    </section>
+  </aside>
+
+  <section class="stack" style="min-width:0">
+    <section class="panel">
+      <h2>Execution flow</h2>
+      <div class="pipeline" id="pipeline"></div>
+    </section>
+
+    <section class="panel review hidden" id="reviewPanel">
+      <h2>Human-in-the-loop checkpoint</h2>
+      <p class="small" id="reviewReasons" style="margin-top:0"></p>
+      <div id="reviewFindings"></div>
+      <div class="grid2" style="margin-top:12px">
+        <label class="field">Reviewer<input type="text" id="reviewer" value="advisor.demo" maxlength="64"></label>
+        <label class="field">Notes<input type="text" id="reviewNotes" placeholder="optional" maxlength="300"></label>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn primary" id="approveBtn" type="button">Approve &amp; generate advice</button>
+        <button class="btn danger" id="rejectBtn" type="button">Reject run</button>
+      </div>
+    </section>
+
+    <section class="panel" id="reportPanel">
+      <div class="tabs" role="tablist" id="tabs">
+        <button class="tab" role="tab" data-tab="summary" aria-selected="true">Summary</button>
+        <button class="tab" role="tab" data-tab="findings" aria-selected="false">Findings</button>
+        <button class="tab" role="tab" data-tab="portfolio" aria-selected="false">Portfolio &amp; cash flow</button>
+        <button class="tab" role="tab" data-tab="quality" aria-selected="false">Data quality</button>
+        <button class="tab" role="tab" data-tab="logs" aria-selected="false">Logs</button>
+        <button class="tab" role="tab" data-tab="json" aria-selected="false">Output JSON</button>
+        <button class="tab" role="tab" data-tab="input" aria-selected="false">Input data</button>
+      </div>
+      <div id="tab-summary"><div class="empty">Pick a client and run the analysis.</div></div>
+      <div id="tab-findings" class="hidden"></div>
+      <div id="tab-portfolio" class="hidden"></div>
+      <div id="tab-quality" class="hidden"></div>
+      <div id="tab-logs" class="hidden"></div>
+      <div id="tab-json" class="hidden"></div>
+      <div id="tab-input" class="hidden"></div>
+    </section>
+  </section>
+</main>
+<footer>Mock data only. Deterministic detectors; no data leaves your browser. Built by Faris Maulana.</footer>
+
+<script id="bundle" type="application/json">__BUNDLE__</script>
+<script src="__PYODIDE_BASE__pyodide.js" integrity="sha384-i3R37b3tF+HWudsUf1VSEOY2YxwSNMqY8DQa9Z0O3xh+NkJ9o+yjcGyIi5huj+nB" crossorigin="anonymous"></script>
+<script>
+"use strict";
+const SCENARIOS = {
+  C001: "Concentration, drift & spending trend",
+  C002: "AML red flags + expired KYC",
+  C003: "Income shock, P2P burst, suitability",
+  C004: "Dirty data + missing from CRM",
+  C005: "Clean baseline (no review needed)",
+  C999: "Missing data file → graceful failure",
+};
+const FAULTS = ["none", "transient", "down", "slow", "corrupt"];
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const usd = (x) => x == null ? "n/a" : "$" + Math.round(x).toLocaleString("en-US");
+const pct = (x) => x == null ? "n/a" : Math.round(x * 100) + "%";
+let py, bridge, selected = "C002", current = null, activeTab = "summary";
+
+function setStatus(html) { $("status").innerHTML = html; }
+
+(function theme() {
+  try { const t = localStorage.getItem("wa-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  $("themeBtn").onclick = () => {
+    const cur = document.documentElement.dataset.theme
+      || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const next = cur === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem("wa-theme", next); } catch (e) {}
+  };
+})();
+
+for (const id of ["crmFault", "marketFault"]) {
+  $(id).innerHTML = FAULTS.map((f) => `<option value="${f}">${f === "none" ? "healthy" : f}</option>`).join("");
+}
+document.querySelectorAll(".tab").forEach((b) => b.onclick = () => showTab(b.dataset.tab));
+function showTab(name) {
+  activeTab = name;
+  document.querySelectorAll(".tab").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tab === name)));
+  for (const t of ["summary", "findings", "portfolio", "quality", "logs", "json", "input"]) $("tab-" + t).classList.toggle("hidden", t !== name);
+}
+
+async function boot() {
+  try {
+    py = await loadPyodide({ indexURL: "__PYODIDE_BASE__" });
+    setStatus("Loading agents…");
+    const files = JSON.parse($("bundle").textContent);
+    const root = "/home/pyodide/app";
+    for (const [path, content] of Object.entries(files)) {
+      const full = `${root}/${path}`;
+      py.FS.mkdirTree(full.substring(0, full.lastIndexOf("/")));
+      py.FS.writeFile(full, content);
+    }
+    py.runPython(`import sys; sys.path.insert(0, "${root}")`);
+    bridge = py.pyimport("bridge");
+    renderClients(JSON.parse(bridge.list_clients()));
+    renderPipeline(null);
+    $("runBtn").disabled = false; $("resetBtn").disabled = false;
+    setStatus(`Ready · Python ${py.runPython("import sys; sys.version.split()[0]")} in WebAssembly`);
+  } catch (err) {
+    console.error(err);
+    setStatus(`<span class="st-failed">Failed to start the Python runtime: ${esc(err.message || err)}</span>`);
+  }
+}
+
+function renderClients(list) {
+  $("clients").innerHTML = list.map((c) => `
+    <button class="client" type="button" data-id="${esc(c.id)}" aria-pressed="${c.id === selected}">
+      <b>${esc(c.id)} · ${esc(c.name)}</b>
+      <small>${esc(SCENARIOS[c.id] || "")}${c.transactions ? ` · ${c.transactions} txns` : ""}</small>
+    </button>`).join("");
+  document.querySelectorAll(".client").forEach((b) => b.onclick = () => {
+    selected = b.dataset.id;
+    document.querySelectorAll(".client").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    renderInput();
+  });
+  renderInput();
+}
+
+function renderInput() {
+  if (!bridge) return;
+  const data = JSON.parse(bridge.client_input(selected));
+  $("tab-input").innerHTML = `<p class="small muted" style="margin-top:0">Raw input as received by the Data Fetcher agent: client financial JSON + mock CRM record.</p>
+    <pre>${esc(JSON.stringify(data, null, 2))}</pre>`;
+}
+
+function call(fn) {
+  $("runBtn").disabled = true;
+  setStatus("Running agents…");
+  return new Promise((resolve) => setTimeout(() => {
+    try { resolve(JSON.parse(fn())); }
+    catch (err) { console.error(err); setStatus(`<span class="st-failed">${esc(err.message || err)}</span>`); resolve(null); }
+    finally { $("runBtn").disabled = false; }
+  }, 30));
+}
+
+$("runBtn").onclick = async () => {
+  const res = await call(() => bridge.run(selected, $("crmFault").value, $("marketFault").value, $("reviewMode").value === "auto"));
+  if (res) render(res);
+};
+$("resetBtn").onclick = () => { bridge.reset_memory(); renderMemory(selected); setStatus("Memory cleared."); };
+$("approveBtn").onclick = () => submitReview(true);
+$("rejectBtn").onclick = () => submitReview(false);
+
+async function submitReview(approved) {
+  if (!current) return;
+  const decisions = [];
+  document.querySelectorAll("#reviewFindings [data-fp]").forEach((el) => {
+    const fp = el.dataset.fp;
+    const action = el.querySelector(`input[name="act-${fp}"]:checked`).value;
+    const note = el.querySelector(".note").value.trim() || null;
+    const d = { fingerprint: fp, action, note };
+    if (action === "override") d.severity = el.querySelector(".sev").value;
+    decisions.push(d);
+  });
+  const decision = { approved, reviewer: $("reviewer").value.trim() || "anonymous", notes: $("reviewNotes").value.trim(), finding_decisions: decisions };
+  const res = await call(() => bridge.resume(current.report.run_id, JSON.stringify(decision)));
+  if (res) render(res);
+}
+
+function render(res) {
+  current = res;
+  const r = res.report;
+  renderPipeline(r);
+  renderReview(r);
+  renderSummary(r);
+  renderFindings(r);
+  renderPortfolio(r);
+  renderQuality(r);
+  renderLogs(res.events);
+  $("tab-json").innerHTML = `<pre>${esc(JSON.stringify(r, null, 2))}</pre>`;
+  renderMemory(r.client_id);
+  const cls = { completed: "st-ok", completed_with_warnings: "st-degraded", awaiting_review: "st-pending", rejected: "st-failed", failed: "st-failed" }[r.status] || "";
+  setStatus(`Run <code>${esc(r.run_id)}</code> → <b class="${cls}">${esc(r.status.replaceAll("_", " "))}</b>`);
+  if (r.status === "awaiting_review") $("reviewPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function renderPipeline(r) {
+  const steps = Object.fromEntries((r?.execution_trace || []).map((s) => [s.step, s]));
+  const review = r?.review || {};
+  const reviewState = !r ? "idle" : r.status === "failed" ? "skipped" : review.pending ? "pending"
+    : review.required ? (r.status === "rejected" ? "failed" : "ok") : "skipped";
+  const reviewLabel = { idle: "", pending: "awaiting", ok: "approved", failed: "rejected", skipped: review.required === false ? "not needed" : "skipped" }[reviewState];
+  const nodes = [
+    ["Orchestrator", "routes tasks, state machine", r ? (r.status === "failed" ? "failed" : "ok") : "idle", r ? esc(r.status.replaceAll("_", " ")) : ""],
+    ["Data Fetcher", "client data · CRM · market data", ...stepState(steps.fetch)],
+    ["Analyzer", "analysis · anomalies · risk score", ...stepState(steps.analyze)],
+    ["Human review", "validate / dismiss / override", reviewState, reviewLabel],
+    ["Advisor", "recommendations · narrative", ...stepState(steps.advise)],
+  ];
+  if (steps.rescore) nodes.splice(4, 0, ["Analyzer (rescore)", "after reviewer changes", ...stepState(steps.rescore)]);
+  $("pipeline").innerHTML = nodes.map(([n, d, st, label]) => `
+    <div class="node ${st}"><b>${n}</b><small>${d}</small>
+      <span class="st st-${st}">${label || (st === "idle" ? "—" : st)}</span></div>`).join("");
+}
+function stepState(s) {
+  if (!s) return ["idle", ""];
+  return [s.status, `${s.status} · ${s.duration_ms.toFixed(1)} ms`];
+}
+
+function renderReview(r) {
+  const show = r.status === "awaiting_review";
+  $("reviewPanel").classList.toggle("hidden", !show);
+  if (!show) return;
+  $("reviewReasons").innerHTML = "Analysis paused before advice generation: " + (r.review.reasons || []).map(esc).join("; ")
+    + ". Validate each finding: dismissals are remembered and suppress the same finding in future runs.";
+  const active = r.anomalies.filter((a) => !["suppressed", "dismissed"].includes(a.status));
+  $("reviewFindings").innerHTML = active.map((a) => `
+    <div class="finding sev-${a.severity}" data-fp="${esc(a.fingerprint)}">
+      <div><span class="chip sev-${a.severity}">${a.severity}</span><span class="chip">${esc(a.status)}</span><span class="title">${esc(a.title)}</span></div>
+      <div class="small muted">${esc(a.description)}</div>
+      <div class="decision">
+        <label><input type="radio" name="act-${esc(a.fingerprint)}" value="confirm" checked> confirm</label>
+        <label><input type="radio" name="act-${esc(a.fingerprint)}" value="dismiss"> dismiss (false positive)</label>
+        <label><input type="radio" name="act-${esc(a.fingerprint)}" value="override"> override →</label>
+        <select class="sev" style="width:auto">${["low","medium","high","critical"].map((s) => `<option ${s === a.severity ? "selected" : ""}>${s}</option>`).join("")}</select>
+        <input type="text" class="note" placeholder="reviewer note" style="flex:1;min-width:160px" maxlength="200">
+      </div>
+    </div>`).join("");
+}
+
+function renderSummary(r) {
+  if (r.status === "failed") {
+    $("tab-summary").innerHTML = `<div class="narr"><b class="st-failed">Run failed gracefully.</b><br>${esc(r.error)}</div>
+      <p class="small muted">The orchestrator stopped at a critical step and returned a structured error instead of crashing. See the Logs tab for the decision trail.</p>`;
+    return;
+  }
+  const risk = r.risk || {};
+  const delta = risk.delta != null ? `<div class="small muted">prev ${risk.previous_value.toFixed(2)} (${esc(risk.previous_band)}) · Δ ${(risk.delta >= 0 ? "+" : "") + risk.delta.toFixed(2)}</div>` : "";
+  const active = r.anomalies.filter((a) => !["suppressed", "dismissed"].includes(a.status));
+  const recs = r.recommendations.length ? `
+    <div class="table-wrap"><table><thead><tr><th>ID</th><th>Priority</th><th>Category</th><th>Action</th><th>Approval</th></tr></thead><tbody>
+    ${r.recommendations.map((x) => `<tr><td>${esc(x.id)}</td><td><b>${esc(x.priority)}</b></td><td>${esc(x.category)}</td><td>${esc(x.action)}<div class="small muted">${esc(x.rationale)}</div></td><td>${x.requires_approval ? "required" : "—"}</td></tr>`).join("")}
+    </tbody></table></div>` : `<p class="muted">${r.status === "awaiting_review" ? "Recommendations are generated after the human review checkpoint." : r.status === "rejected" ? "Run rejected by the reviewer: no advice generated." : "No recommendations."}</p>`;
+  $("tab-summary").innerHTML = `
+    <div class="kpis">
+      <div class="kpi"><div class="l">Risk</div><div class="v band-${esc(risk.band)}">${esc((risk.band || "n/a").toUpperCase())} · ${risk.value != null ? risk.value.toFixed(2) : "–"}</div>${delta}</div>
+      <div class="kpi"><div class="l">Active findings</div><div class="v">${active.length}</div><div class="small muted">${r.anomalies.length - active.length} suppressed/dismissed</div></div>
+      <div class="kpi"><div class="l">Portfolio</div><div class="v">${usd(r.portfolio?.total_market_value)}</div><div class="small muted">vol ${pct(r.portfolio?.weighted_volatility)}</div></div>
+      <div class="kpi"><div class="l">Cash buffer</div><div class="v">${r.cashflow?.cash_buffer_months ?? "n/a"} mo</div><div class="small muted">liquid ${usd(r.cashflow?.liquid_assets)}</div></div>
+    </div>
+    ${r.degraded_sources.length ? `<p class="small st-degraded">Degraded mode: ${r.degraded_sources.map(esc).join(", ")} (fallbacks applied; see Data quality)</p>` : ""}
+    ${risk.drivers?.length ? `<h3 style="font-size:15px">Top risk drivers</h3><ul>${risk.drivers.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>` : ""}
+    ${r.narrative ? `<h3 style="font-size:15px">Advisor briefing <span class="chip">${esc(r.narrative_source)}</span></h3><div class="narr">${esc(r.narrative)}</div>` : ""}
+    <h3 style="font-size:15px">Recommendations</h3>${recs}
+    ${r.review?.decision ? `<p class="small muted">Reviewed by <b>${esc(r.review.decision.reviewer)}</b> · ${r.review.decision.approved ? "approved" : "rejected"} · ${esc(r.review.decision.notes || "")}</p>` : ""}`;
+}
+
+function renderFindings(r) {
+  if (!r.anomalies.length) { $("tab-findings").innerHTML = `<div class="empty">No findings.</div>`; return; }
+  $("tab-findings").innerHTML = r.anomalies.map((a) => {
+    const inactive = ["suppressed", "dismissed"].includes(a.status);
+    const corr = (a.evidence.corroborating_signals || []).map((c) => `${esc(c.type)} (${esc(c.severity)})`).join(", ");
+    const ev = Object.fromEntries(Object.entries(a.evidence).filter(([k]) => !["key", "corroborating_signals", "monthly"].includes(k)));
+    return `<div class="finding sev-${a.severity} ${inactive ? "inactive" : ""}">
+      <div><span class="chip sev-${a.severity}">${a.severity}</span><span class="chip">${esc(a.category)}</span><span class="chip">${esc(a.status)}</span>
+      ${a.original_severity ? `<span class="chip">was ${esc(a.original_severity)}</span>` : ""}<span class="title">${esc(a.title)}</span></div>
+      <div class="small">${esc(a.description)}</div>
+      ${corr ? `<div class="small muted">Corroborating signals: ${corr}</div>` : ""}
+      ${a.reviewer_note ? `<div class="small muted">Reviewer: ${esc(a.reviewer_note)}</div>` : ""}
+      <details class="small"><summary class="muted">evidence · score ${a.score.toFixed(2)} · fp ${esc(a.fingerprint)}</summary><pre>${esc(JSON.stringify({ ...ev, transaction_ids: a.transaction_ids }, null, 2))}</pre></details>
+    </div>`;
+  }).join("");
+}
+
+function renderPortfolio(r) {
+  const p = r.portfolio, c = r.cashflow;
+  if (!p && !c) { $("tab-portfolio").innerHTML = `<div class="empty">No analysis available.</div>`; return; }
+  const alloc = p ? Object.entries(p.allocation).map(([k, v]) => `
+    <tr><td>${esc(k.replace("_", " "))}</td><td style="width:45%"><div class="bar"><span style="width:${Math.min(100, v * 100)}%"></span></div></td><td>${pct(v)}</td><td>${p.target_allocation[k] != null ? pct(p.target_allocation[k]) : "n/a"}</td></tr>`).join("") : "";
+  const pos = p ? Object.entries(p.position_weights).map(([t, w]) => `<tr><td>${esc(t)}${p.priced_with_fallback.includes(t) ? ' <span class="chip">cost basis</span>' : ""}</td><td>${esc(p.position_sectors[t])}</td><td>${pct(w)}</td></tr>`).join("") : "";
+  const months = c ? c.months.map((m) => `<tr><td>${m}</td><td>${usd(c.monthly_income[m])}</td><td>${usd(c.monthly_spend[m])}</td></tr>`).join("") : "";
+  $("tab-portfolio").innerHTML = `
+    ${p ? `<h3 style="font-size:15px;margin-top:0">Allocation vs target (${esc(r.profile?.risk_profile || "no profile")})</h3>
+    <div class="table-wrap"><table><thead><tr><th>Asset class</th><th></th><th>Actual</th><th>Target</th></tr></thead><tbody>${alloc}</tbody></table></div>
+    <p class="small muted">Total ${usd(p.total_market_value)} · unrealised P&amp;L ${usd(p.unrealized_pnl)} · est. volatility ${pct(p.weighted_volatility)} (upper bound, ρ=1)</p>
+    <div class="table-wrap"><table><thead><tr><th>Position</th><th>Sector</th><th>Weight</th></tr></thead><tbody>${pos}</tbody></table></div>` : ""}
+    ${c ? `<h3 style="font-size:15px">Cash flow</h3>
+    <p class="small muted">Avg income ${usd(c.avg_monthly_income)}/mo · avg spend ${usd(c.avg_monthly_spend)}/mo · savings rate ${pct(c.savings_rate)} · ${c.transaction_count} transactions</p>
+    <div class="table-wrap"><table><thead><tr><th>Month</th><th>Income</th><th>Spend</th></tr></thead><tbody>${months}</tbody></table></div>` : ""}`;
+}
+
+function renderQuality(r) {
+  const notes = (r.analysis_notes || []).map((n) => `<li>${esc(n)}</li>`).join("");
+  const rows = r.data_quality.map((i) => `<tr><td><span class="chip ${i.severity === "error" ? "sev-high" : ""}">${esc(i.severity)}</span></td><td>${esc(i.source)}</td><td><code>${esc(i.code)}</code></td><td>${esc(i.message)}</td></tr>`).join("");
+  const prof = r.profile ? `<p class="small">CRM profile source: <b>${esc(r.profile.source)}</b>${r.profile.stale ? " (stale cache)" : ""}</p>` : "";
+  $("tab-quality").innerHTML = `${prof}${notes ? `<ul>${notes}</ul>` : ""}
+    ${rows ? `<div class="table-wrap"><table><thead><tr><th>Severity</th><th>Source</th><th>Code</th><th>Message</th></tr></thead><tbody>${rows}</tbody></table></div>` : `<div class="empty">No data-quality issues.</div>`}`;
+}
+
+function renderLogs(events) {
+  const rows = events.map((e) => {
+    const skip = new Set(["ts", "level", "logger", "event", "run_id", "client_id", "agent", "task"]);
+    const fields = Object.entries(e).filter(([k]) => !skip.has(k)).map(([k, v]) => `${esc(k)}=${esc(typeof v === "string" ? v : JSON.stringify(v))}`).join(" ");
+    return `<tr><td class="small muted">${esc(e.ts.slice(11, 23))}</td><td class="lvl-${esc(e.level)} small">${esc(e.level)}</td><td class="small">${esc(e.agent || "")}</td><td><code>${esc(e.event)}</code><div class="small muted" style="word-break:break-word">${fields}</div></td></tr>`;
+  }).join("");
+  $("tab-logs").innerHTML = `<p class="small muted" style="margin-top:0">Structured events captured for this run (same records the CLI writes as JSONL). ${events.length} events.</p>
+    <div class="table-wrap"><table><thead><tr><th>Time</th><th>Level</th><th>Agent</th><th>Event</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function renderMemory(clientId) {
+  if (!bridge) return;
+  const m = JSON.parse(bridge.memory(clientId));
+  const runs = m.runs.map((x) => `<tr><td>${esc(x.saved_at.slice(11, 19))}</td><td class="band-${esc(x.risk.band)}">${x.risk.value.toFixed(2)} ${esc(x.risk.band)}</td><td>${x.active_findings}</td></tr>`).join("");
+  const dismissed = Object.entries(m.dismissed).map(([fp, d]) => `<li><code>${esc(fp)}</code> by ${esc(d.reviewer)}${d.note ? ": " + esc(d.note) : ""}</li>`).join("");
+  $("memory").innerHTML = `<div class="small"><b>${esc(clientId)}</b> · CRM snapshot cached: ${m.crm_cached ? "yes" : "no"}</div>
+    ${runs ? `<div class="table-wrap"><table><thead><tr><th>Run</th><th>Risk</th><th>Active</th></tr></thead><tbody>${runs}</tbody></table></div>` : `<div class="small muted">No completed runs yet.</div>`}
+    ${dismissed ? `<div class="small" style="margin-top:8px">Dismissed (suppressed in future runs):<ul>${dismissed}</ul></div>` : ""}`;
+}
+
+boot();
+</script>
+</body>
+</html>

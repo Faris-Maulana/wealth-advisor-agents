@@ -1,0 +1,77 @@
+{
+  "C001": {
+    "client_id": "C001",
+    "advisor": "J. Whitfield",
+    "segment": "mass_affluent",
+    "risk_profile": "moderate",
+    "risk_profile_updated": "2026-01-20",
+    "kyc_status": "verified",
+    "kyc_expiry": "2027-05-01",
+    "age": 42,
+    "investment_horizon_years": 15,
+    "usual_countries": [
+      "US",
+      "JP"
+    ],
+    "last_contact": "2026-07-02",
+    "goals": [
+      "children education",
+      "retirement at 60"
+    ]
+  },
+  "C002": {
+    "client_id": "C002",
+    "advisor": "J. Whitfield",
+    "segment": "retiree",
+    "risk_profile": "conservative",
+    "risk_profile_updated": "2025-03-11",
+    "kyc_status": "verified",
+    "kyc_expiry": "2026-08-15",
+    "age": 71,
+    "investment_horizon_years": 8,
+    "usual_countries": [
+      "US"
+    ],
+    "last_contact": "2026-02-18",
+    "goals": [
+      "capital preservation",
+      "income"
+    ]
+  },
+  "C003": {
+    "client_id": "C003",
+    "advisor": "L. Romero",
+    "segment": "emerging",
+    "risk_profile": "moderate",
+    "risk_profile_updated": "2026-02-02",
+    "kyc_status": "verified",
+    "kyc_expiry": "2027-02-02",
+    "age": 29,
+    "investment_horizon_years": 30,
+    "usual_countries": [
+      "US"
+    ],
+    "last_contact": "2026-05-30",
+    "goals": [
+      "home purchase in 5y"
+    ]
+  },
+  "C005": {
+    "client_id": "C005",
+    "advisor": "L. Romero",
+    "segment": "mass_affluent",
+    "risk_profile": "moderate",
+    "risk_profile_updated": "2026-04-10",
+    "kyc_status": "verified",
+    "kyc_expiry": "2027-10-10",
+    "age": 37,
+    "investment_horizon_years": 25,
+    "usual_countries": [
+      "US"
+    ],
+    "last_contact": "2026-08-21",
+    "goals": [
+      "retirement"
+    ]
+  }
+}

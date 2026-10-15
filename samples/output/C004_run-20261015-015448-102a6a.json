@@ -1,0 +1,333 @@
+{
+  "run_id": "run-20261015-015448-102a6a",
+  "client_id": "C004",
+  "client_name": "Marcus Oyelaran",
+  "generated_at": "2026-10-15T01:54:48.924+00:00",
+  "status": "completed_with_warnings",
+  "as_of": "2026-09-30",
+  "profile": {
+    "client_id": "C004",
+    "risk_profile": null,
+    "risk_profile_updated": null,
+    "kyc_status": null,
+    "kyc_expiry": null,
+    "age": null,
+    "advisor": null,
+    "segment": null,
+    "investment_horizon_years": null,
+    "usual_countries": [],
+    "goals": [],
+    "last_contact": null,
+    "source": "unavailable",
+    "stale": false,
+    "fetched_at": null
+  },
+  "portfolio": {
+    "total_market_value": 70840.0,
+    "invested_value": 70840.0,
+    "cash_value": 0,
+    "allocation": {
+      "equity": 0.6471,
+      "fixed_income": 0.0,
+      "cash": 0.0,
+      "alternative": 0.3529
+    },
+    "target_allocation": {},
+    "sector_weights": {
+      "diversified": 0.6471,
+      "unknown": 0.3529
+    },
+    "position_weights": {
+      "VTI": 0.6471,
+      "PRIVCO": 0.3529
+    },
+    "position_sectors": {
+      "VTI": "diversified",
+      "PRIVCO": "unknown"
+    },
+    "unrealized_pnl": 9840.0,
+    "weighted_volatility": 0.17,
+    "priced_with_fallback": [
+      "PRIVCO"
+    ],
+    "excluded_holdings": []
+  },
+  "cashflow": {
+    "months": [
+      "2026-04",
+      "2026-05",
+      "2026-06",
+      "2026-07",
+      "2026-08",
+      "2026-09"
+    ],
+    "monthly_income": {
+      "2026-04": 7200.0,
+      "2026-05": 7200.0,
+      "2026-06": 7200.0,
+      "2026-07": 7200.0,
+      "2026-08": 7200.0,
+      "2026-09": 7200.0
+    },
+    "monthly_spend": {
+      "2026-04": 2964.87,
+      "2026-05": 3018.99,
+      "2026-06": 3641.75,
+      "2026-07": 3121.29,
+      "2026-08": 3051.45,
+      "2026-09": 3006.57
+    },
+    "avg_monthly_income": 7200.0,
+    "avg_monthly_spend": 3134.15,
+    "savings_rate": 0.5647,
+    "top_spend_categories": {
+      "housing": 16800.0,
+      "groceries": 1158.32,
+      "travel": 691.2,
+      "dining": 155.4
+    },
+    "liquid_assets": 12800.0,
+    "cash_buffer_months": 4.22,
+    "transaction_count": 20
+  },
+  "risk": {
+    "value": 0.2816,
+    "band": "moderate",
+    "drivers": [
+      "PRIVCO is 35% of the portfolio (high)",
+      "Payment to unusual jurisdiction (DE) (medium)",
+      "KYC and risk profile could not be verified (medium)"
+    ],
+    "previous_value": null,
+    "previous_band": null,
+    "delta": null
+  },
+  "anomalies": [
+    {
+      "type": "concentration_position",
+      "category": "portfolio",
+      "severity": "high",
+      "score": 0.7058,
+      "title": "PRIVCO is 35% of the portfolio",
+      "description": "Single-name position above the 20% concentration limit (valued at cost; no market quote).",
+      "evidence": {
+        "key": [
+          "conc",
+          "PRIVCO"
+        ],
+        "ticker": "PRIVCO",
+        "weight": 0.3529,
+        "limit": 0.2
+      },
+      "transaction_ids": [],
+      "fingerprint": "600323fa906d792f",
+      "status": "new",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "unusual_geography",
+      "category": "transaction",
+      "severity": "medium",
+      "score": 0.6,
+      "title": "Payment to unusual jurisdiction (DE)",
+      "description": "$691 to Hotel Adlon in DE; client's usual countries: US.",
+      "evidence": {
+        "key": [
+          "txn",
+          "C004-T0019"
+        ],
+        "amount": -691.2,
+        "counterparty": "Hotel Adlon",
+        "date": "2026-06-14T12:00:00",
+        "channel": "card",
+        "country": "DE",
+        "usual_countries": [
+          "US"
+        ]
+      },
+      "transaction_ids": [
+        "C004-T0019"
+      ],
+      "fingerprint": "534f1a340db09d04",
+      "status": "new",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "compliance_unverified",
+      "category": "compliance",
+      "severity": "medium",
+      "score": 0.5,
+      "title": "KYC and risk profile could not be verified",
+      "description": "CRM data was unavailable and no cached profile exists; suitability and KYC checks were skipped.",
+      "evidence": {
+        "key": [
+          "compliance_unverified"
+        ]
+      },
+      "transaction_ids": [],
+      "fingerprint": "2551911eb0936296",
+      "status": "new",
+      "reviewer_note": null,
+      "original_severity": null
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "R1",
+      "priority": "P1",
+      "category": "portfolio",
+      "action": "Prepare a rebalancing proposal: trim PRIVCO to below the single-name limit. Use tax-lot selection to minimise realised gains.",
+      "rationale": "PRIVCO is 35% of the portfolio",
+      "linked_findings": [
+        "600323fa906d792f"
+      ],
+      "requires_approval": true
+    },
+    {
+      "id": "R2",
+      "priority": "P2",
+      "category": "compliance",
+      "action": "Contact the client through a verified channel to confirm 1 flagged transaction(s) (~$691). If unconfirmed, freeze outbound transfers and escalate to compliance.",
+      "rationale": "Payment to unusual jurisdiction (DE)",
+      "linked_findings": [
+        "534f1a340db09d04"
+      ],
+      "requires_approval": false
+    },
+    {
+      "id": "R3",
+      "priority": "P2",
+      "category": "compliance",
+      "action": "Refresh KYC documentation before executing any new trades or transfers.",
+      "rationale": "KYC and risk profile could not be verified",
+      "linked_findings": [
+        "2551911eb0936296"
+      ],
+      "requires_approval": false
+    }
+  ],
+  "narrative": "Marcus's overall risk is MODERATE (score 28/100). Key findings: PRIVCO is 35% of the portfolio [high]; Payment to unusual jurisdiction (DE) [medium]; KYC and risk profile could not be verified [medium]. Most urgent action (P1): Prepare a rebalancing proposal: trim PRIVCO to below the single-name limit. Use tax-lot selection to minimise realised gains. Caveat: analysis ran in degraded mode for crm; some checks used cached or partial data.",
+  "narrative_source": "template",
+  "review": {
+    "required": true,
+    "decision": {
+      "approved": true,
+      "reviewer": "auto-policy",
+      "notes": "Auto-approved by policy (non-interactive run); requires human sign-off before any client-facing action.",
+      "finding_decisions": [],
+      "decided_at": "2026-10-15T01:54:48+00:00"
+    },
+    "applied": [],
+    "ignored_fingerprints": [],
+    "reasons": [
+      "1 finding(s) at or above 'high' severity"
+    ]
+  },
+  "analysis_notes": [
+    "No risk profile available: allocation drift, volatility and suitability checks skipped.",
+    "Degraded inputs: crm"
+  ],
+  "data_quality": [
+    {
+      "source": "client_data",
+      "code": "unknown_balance",
+      "message": "account C004-SAV has no usable balance; treated as 0 (liquidity may be understated)",
+      "record_id": "C004-SAV",
+      "severity": "warning"
+    },
+    {
+      "source": "client_data",
+      "code": "invalid_holding",
+      "message": "holding BND has invalid quantity -10; excluded",
+      "record_id": "BND",
+      "severity": "warning"
+    },
+    {
+      "source": "client_data",
+      "code": "unknown_currency",
+      "message": "transaction C004-T0021 in unsupported currency XYZ; dropped",
+      "record_id": "C004-T0021",
+      "severity": "warning"
+    },
+    {
+      "source": "client_data",
+      "code": "invalid_amount",
+      "message": "transaction C004-T0022 has missing/non-numeric amount None; dropped",
+      "record_id": "C004-T0022",
+      "severity": "warning"
+    },
+    {
+      "source": "client_data",
+      "code": "invalid_timestamp",
+      "message": "transaction C004-T0023 has invalid timestamp '2026-13-45T99:00:00'; dropped",
+      "record_id": "C004-T0023",
+      "severity": "warning"
+    },
+    {
+      "source": "client_data",
+      "code": "invalid_amount",
+      "message": "transaction C004-T0024 has missing/non-numeric amount 'not-a-number'; dropped",
+      "record_id": "C004-T0024",
+      "severity": "warning"
+    },
+    {
+      "source": "client_data",
+      "code": "duplicate_record",
+      "message": "duplicate transaction id C004-T0004; kept first occurrence",
+      "record_id": "C004-T0004",
+      "severity": "warning"
+    },
+    {
+      "source": "crm",
+      "code": "client_not_in_crm",
+      "message": "client C004 not found in CRM",
+      "record_id": null,
+      "severity": "error"
+    },
+    {
+      "source": "market_data",
+      "code": "unknown_ticker",
+      "message": "no quote for PRIVCO; valued at cost basis, excluded from volatility",
+      "record_id": "PRIVCO",
+      "severity": "warning"
+    }
+  ],
+  "degraded_sources": [
+    "crm"
+  ],
+  "execution_trace": [
+    {
+      "step": "fetch",
+      "agent": "data_fetcher",
+      "status": "degraded",
+      "started_at": "2026-10-15T01:54:48.917+00:00",
+      "duration_ms": 1.94,
+      "warnings": [
+        "client not found in CRM; compliance checks limited",
+        "9 data-quality issue(s) recorded"
+      ],
+      "error": null
+    },
+    {
+      "step": "analyze",
+      "agent": "analyzer",
+      "status": "ok",
+      "started_at": "2026-10-15T01:54:48.919+00:00",
+      "duration_ms": 1.96,
+      "warnings": [],
+      "error": null
+    },
+    {
+      "step": "advise",
+      "agent": "advisor",
+      "status": "ok",
+      "started_at": "2026-10-15T01:54:48.923+00:00",
+      "duration_ms": 0.58,
+      "warnings": [],
+      "error": null
+    }
+  ],
+  "error": null
+}

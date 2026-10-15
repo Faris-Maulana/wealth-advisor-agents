@@ -1,0 +1,452 @@
+{
+  "run_id": "run-20261015-015449-663648",
+  "client_id": "C001",
+  "client_name": "Amelia Chen",
+  "generated_at": "2026-10-15T01:54:50.807+00:00",
+  "status": "completed_with_warnings",
+  "as_of": "2026-09-30",
+  "profile": {
+    "client_id": "C001",
+    "risk_profile": "moderate",
+    "risk_profile_updated": "2026-01-20",
+    "kyc_status": "verified",
+    "kyc_expiry": "2027-05-01",
+    "age": 42,
+    "advisor": "J. Whitfield",
+    "segment": "mass_affluent",
+    "investment_horizon_years": 15,
+    "usual_countries": [
+      "US",
+      "JP"
+    ],
+    "goals": [
+      "children education",
+      "retirement at 60"
+    ],
+    "last_contact": "2026-07-02",
+    "source": "cache",
+    "stale": true,
+    "fetched_at": "2026-10-15T01:54:48+00:00"
+  },
+  "portfolio": {
+    "total_market_value": 450238.0,
+    "invested_value": 446038.0,
+    "cash_value": 4200.0,
+    "allocation": {
+      "equity": 0.8555,
+      "fixed_income": 0.1351,
+      "cash": 0.0093,
+      "alternative": 0.0
+    },
+    "target_allocation": {
+      "equity": 0.6,
+      "fixed_income": 0.3,
+      "cash": 0.05,
+      "alternative": 0.05
+    },
+    "sector_weights": {
+      "technology": 0.5864,
+      "diversified": 0.2691,
+      "bonds": 0.1351
+    },
+    "position_weights": {
+      "NVDA": 0.364,
+      "AAPL": 0.2224,
+      "VTI": 0.2104,
+      "BND": 0.1351,
+      "VXUS": 0.0587
+    },
+    "position_sectors": {
+      "NVDA": "technology",
+      "AAPL": "technology",
+      "VTI": "diversified",
+      "BND": "bonds",
+      "VXUS": "diversified"
+    },
+    "unrealized_pnl": 166038.0,
+    "weighted_volatility": 0.3026,
+    "priced_with_fallback": [],
+    "excluded_holdings": []
+  },
+  "cashflow": {
+    "months": [
+      "2026-04",
+      "2026-05",
+      "2026-06",
+      "2026-07",
+      "2026-08",
+      "2026-09"
+    ],
+    "monthly_income": {
+      "2026-04": 0.0,
+      "2026-05": 0.0,
+      "2026-06": 0.0,
+      "2026-07": 0.0,
+      "2026-08": 0.0,
+      "2026-09": 0.0
+    },
+    "monthly_spend": {
+      "2026-04": 4403.48,
+      "2026-05": 5114.84,
+      "2026-06": 5635.48,
+      "2026-07": 5713.04,
+      "2026-08": 13048.68,
+      "2026-09": 24384.32
+    },
+    "avg_monthly_income": 0.0,
+    "avg_monthly_spend": 9716.64,
+    "savings_rate": null,
+    "top_spend_categories": {
+      "housing": 19200.0,
+      "education": 18500.0,
+      "travel": 7330.0,
+      "groceries": 4773.96,
+      "dining": 3513.7,
+      "shopping": 2884.94
+    },
+    "liquid_assets": 99450.0,
+    "cash_buffer_months": 17.53,
+    "transaction_count": 138
+  },
+  "risk": {
+    "value": 0.7842,
+    "band": "high",
+    "drivers": [
+      "Discretionary spending up 147% (high)",
+      "Large outflow: $18,500 to Westbrook Academy (high)",
+      "Portfolio is aggressive but client profile is moderate (high)"
+    ],
+    "previous_value": 0.7842,
+    "previous_band": "high",
+    "delta": 0.0
+  },
+  "anomalies": [
+    {
+      "type": "spending_trend",
+      "category": "cashflow",
+      "severity": "high",
+      "score": 1.0,
+      "title": "Discretionary spending up 147%",
+      "description": "Median monthly discretionary spend (dining, shopping, travel, entertainment) rose from $618 to $1,526 over the last 3 months.",
+      "evidence": {
+        "key": [
+          "spending_trend",
+          "2026-09"
+        ],
+        "prior_median": 617.63,
+        "recent_median": 1525.53,
+        "change_pct": 1.47,
+        "monthly": {
+          "2026-04": 617.63,
+          "2026-05": 543.42,
+          "2026-06": 1150.65,
+          "2026-07": 1525.53,
+          "2026-08": 8715.05,
+          "2026-09": 1176.36
+        }
+      },
+      "transaction_ids": [],
+      "fingerprint": "9a0c6b3474a91390",
+      "status": "recurring",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "large_outflow",
+      "category": "transaction",
+      "severity": "high",
+      "score": 0.89,
+      "title": "Large outflow: $18,500 to Westbrook Academy",
+      "description": "Single payment equal to 19% of current liquid assets ($99,450). Corroborated by: new_counterparty.",
+      "evidence": {
+        "key": [
+          "txn",
+          "C001-T0138"
+        ],
+        "amount": -18500.0,
+        "counterparty": "Westbrook Academy",
+        "date": "2026-09-03T11:00:00",
+        "channel": "wire",
+        "country": "US",
+        "pct_of_liquid": 0.186,
+        "corroborating_signals": [
+          {
+            "type": "new_counterparty",
+            "severity": "high",
+            "detail": "First-ever payment to this counterparty ($18,500), above the client's 95th percentile outflow ($3,200)."
+          }
+        ]
+      },
+      "transaction_ids": [
+        "C001-T0138"
+      ],
+      "fingerprint": "a9d1ccd89b2eec6e",
+      "status": "recurring",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "suitability_mismatch",
+      "category": "compliance",
+      "severity": "high",
+      "score": 0.8,
+      "title": "Portfolio is aggressive but client profile is moderate",
+      "description": "Growth assets are 86% of the portfolio, consistent with an aggressive profile; the documented risk tolerance is moderate.",
+      "evidence": {
+        "key": [
+          "suitability",
+          "moderate",
+          "aggressive"
+        ],
+        "stated": "moderate",
+        "implied": "aggressive",
+        "growth_weight": 0.8555
+      },
+      "transaction_ids": [],
+      "fingerprint": "dc97160ff9ac9f64",
+      "status": "recurring",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "allocation_drift",
+      "category": "portfolio",
+      "severity": "high",
+      "score": 0.7665,
+      "title": "Allocation drift: equity +26% vs moderate target",
+      "description": "Equity is 86% vs a target of 60% for a moderate profile.",
+      "evidence": {
+        "key": [
+          "drift",
+          "moderate"
+        ],
+        "drifts": {
+          "equity": 0.2555,
+          "fixed_income": -0.1649,
+          "cash": -0.0407,
+          "alternative": -0.05
+        },
+        "actual": {
+          "equity": 0.8555,
+          "fixed_income": 0.1351,
+          "cash": 0.0093,
+          "alternative": 0.0
+        },
+        "target": {
+          "equity": 0.6,
+          "fixed_income": 0.3,
+          "cash": 0.05,
+          "alternative": 0.05
+        }
+      },
+      "transaction_ids": [],
+      "fingerprint": "c6257970f04e16a1",
+      "status": "recurring",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "concentration_position",
+      "category": "portfolio",
+      "severity": "high",
+      "score": 0.728,
+      "title": "NVDA is 36% of the portfolio",
+      "description": "Single-name position above the 20% concentration limit.",
+      "evidence": {
+        "key": [
+          "conc",
+          "NVDA"
+        ],
+        "ticker": "NVDA",
+        "weight": 0.364,
+        "limit": 0.2
+      },
+      "transaction_ids": [],
+      "fingerprint": "d32b6807631612f2",
+      "status": "recurring",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "excess_volatility",
+      "category": "portfolio",
+      "severity": "high",
+      "score": 0.672444,
+      "title": "Portfolio volatility 30% exceeds moderate ceiling",
+      "description": "Weighted volatility of 30% vs a 15% ceiling (upper-bound estimate assuming perfect correlation).",
+      "evidence": {
+        "key": [
+          "vol",
+          "moderate"
+        ],
+        "volatility": 0.3026,
+        "ceiling": 0.15
+      },
+      "transaction_ids": [],
+      "fingerprint": "da70b54a4f1e077c",
+      "status": "recurring",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "concentration_sector",
+      "category": "portfolio",
+      "severity": "medium",
+      "score": 0.8796,
+      "title": "Technology sector is 59% of the portfolio",
+      "description": "Sector exposure above the 40% limit.",
+      "evidence": {
+        "key": [
+          "sector",
+          "technology"
+        ],
+        "sector": "technology",
+        "weight": 0.5864,
+        "limit": 0.4
+      },
+      "transaction_ids": [],
+      "fingerprint": "848e2b9390305fab",
+      "status": "recurring",
+      "reviewer_note": null,
+      "original_severity": null
+    },
+    {
+      "type": "concentration_position",
+      "category": "portfolio",
+      "severity": "medium",
+      "score": 0.4448,
+      "title": "AAPL is 22% of the portfolio",
+      "description": "Single-name position above the 20% concentration limit.",
+      "evidence": {
+        "key": [
+          "conc",
+          "AAPL"
+        ],
+        "ticker": "AAPL",
+        "weight": 0.2224,
+        "limit": 0.2
+      },
+      "transaction_ids": [],
+      "fingerprint": "3adde55c5796aef6",
+      "status": "recurring",
+      "reviewer_note": null,
+      "original_severity": null
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "R1",
+      "priority": "P1",
+      "category": "compliance",
+      "action": "Contact the client through a verified channel to confirm 1 flagged transaction(s) (~$18,500). If unconfirmed, freeze outbound transfers and escalate to compliance.",
+      "rationale": "Large outflow: $18,500 to Westbrook Academy",
+      "linked_findings": [
+        "a9d1ccd89b2eec6e"
+      ],
+      "requires_approval": true
+    },
+    {
+      "id": "R2",
+      "priority": "P1",
+      "category": "suitability",
+      "action": "Schedule a risk-profile review meeting and re-run the suitability questionnaire before any rebalancing trades.",
+      "rationale": "Portfolio is aggressive but client profile is moderate",
+      "linked_findings": [
+        "dc97160ff9ac9f64"
+      ],
+      "requires_approval": false
+    },
+    {
+      "id": "R3",
+      "priority": "P1",
+      "category": "portfolio",
+      "action": "Prepare a rebalancing proposal: trim NVDA, AAPL to below the single-name limit; rebalance toward the moderate target (equity 60%, fixed income 30%, cash 5%, alternative 5%). Use tax-lot selection to minimise realised gains.",
+      "rationale": "Allocation drift: equity +26% vs moderate target; NVDA is 36% of the portfolio; Portfolio volatility 30% exceeds moderate ceiling; Technology sector is 59% of the portfolio; AAPL is 22% of the portfolio",
+      "linked_findings": [
+        "c6257970f04e16a1",
+        "d32b6807631612f2",
+        "da70b54a4f1e077c",
+        "848e2b9390305fab",
+        "3adde55c5796aef6"
+      ],
+      "requires_approval": true
+    },
+    {
+      "id": "R4",
+      "priority": "P1",
+      "category": "financial_planning",
+      "action": "Review the discretionary budget with the client and confirm whether the increase is planned (e.g. travel) or structural.",
+      "rationale": "Discretionary spending up 147%",
+      "linked_findings": [
+        "9a0c6b3474a91390"
+      ],
+      "requires_approval": false
+    }
+  ],
+  "narrative": "Amelia's overall risk is HIGH (score 78/100), unchanged from 78/100 at the last review. Key findings: Discretionary spending up 147% [high]; Large outflow: $18,500 to Westbrook Academy [high]; Portfolio is aggressive but client profile is moderate [high]; Allocation drift: equity +26% vs moderate target [high]; NVDA is 36% of the portfolio [high]. Most urgent action (P1): Contact the client through a verified channel to confirm 1 flagged transaction(s) (~$18,500). If unconfirmed, freeze outbound transfers and escalate to compliance. Caveat: analysis ran in degraded mode for crm; some checks used cached or partial data.",
+  "narrative_source": "template",
+  "review": {
+    "required": true,
+    "decision": {
+      "approved": true,
+      "reviewer": "auto-policy",
+      "notes": "Auto-approved by policy (non-interactive run); requires human sign-off before any client-facing action.",
+      "finding_decisions": [],
+      "decided_at": "2026-10-15T01:54:50+00:00"
+    },
+    "applied": [],
+    "ignored_fingerprints": [],
+    "reasons": [
+      "6 finding(s) at or above 'high' severity",
+      "risk band 'high' at or above 'elevated'"
+    ]
+  },
+  "analysis_notes": [
+    "Degraded inputs: crm"
+  ],
+  "data_quality": [
+    {
+      "source": "crm",
+      "code": "stale_profile",
+      "message": "CRM unavailable (TransientToolError); using cached profile from 2026-10-15T01:54:48+00:00",
+      "record_id": null,
+      "severity": "warning"
+    }
+  ],
+  "degraded_sources": [
+    "crm"
+  ],
+  "execution_trace": [
+    {
+      "step": "fetch",
+      "agent": "data_fetcher",
+      "status": "degraded",
+      "started_at": "2026-10-15T01:54:49.663+00:00",
+      "duration_ms": 1138.02,
+      "warnings": [
+        "CRM unavailable; using cached profile",
+        "1 data-quality issue(s) recorded"
+      ],
+      "error": null
+    },
+    {
+      "step": "analyze",
+      "agent": "analyzer",
+      "status": "ok",
+      "started_at": "2026-10-15T01:54:50.801+00:00",
+      "duration_ms": 2.45,
+      "warnings": [],
+      "error": null
+    },
+    {
+      "step": "advise",
+      "agent": "advisor",
+      "status": "ok",
+      "started_at": "2026-10-15T01:54:50.807+00:00",
+      "duration_ms": 0.61,
+      "warnings": [],
+      "error": null
+    }
+  ],
+  "error": null
+}

@@ -1,0 +1,165 @@
+{
+  "run_id": "run-20261015-015448-331b5e",
+  "client_id": "C005",
+  "client_name": "Sofia Marquez",
+  "generated_at": "2026-10-15T01:54:48.940+00:00",
+  "status": "completed",
+  "as_of": "2026-09-30",
+  "profile": {
+    "client_id": "C005",
+    "risk_profile": "moderate",
+    "risk_profile_updated": "2026-04-10",
+    "kyc_status": "verified",
+    "kyc_expiry": "2027-10-10",
+    "age": 37,
+    "advisor": "L. Romero",
+    "segment": "mass_affluent",
+    "investment_horizon_years": 25,
+    "usual_countries": [
+      "US"
+    ],
+    "goals": [
+      "retirement"
+    ],
+    "last_contact": "2026-08-21",
+    "source": "crm",
+    "stale": false,
+    "fetched_at": "2026-10-15T01:54:48+00:00"
+  },
+  "portfolio": {
+    "total_market_value": 256908.0,
+    "invested_value": 247908.0,
+    "cash_value": 9000.0,
+    "allocation": {
+      "equity": 0.6241,
+      "fixed_income": 0.3033,
+      "cash": 0.035,
+      "alternative": 0.0376
+    },
+    "target_allocation": {
+      "equity": 0.6,
+      "fixed_income": 0.3,
+      "cash": 0.05,
+      "alternative": 0.05
+    },
+    "sector_weights": {
+      "diversified": 0.6241,
+      "bonds": 0.3033,
+      "commodities": 0.0376
+    },
+    "position_weights": {
+      "VTI": 0.3925,
+      "BND": 0.3033,
+      "VXUS": 0.2316,
+      "GLD": 0.0376
+    },
+    "position_sectors": {
+      "VTI": "diversified",
+      "VXUS": "diversified",
+      "BND": "bonds",
+      "GLD": "commodities"
+    },
+    "unrealized_pnl": 35708.0,
+    "weighted_volatility": 0.1276,
+    "priced_with_fallback": [],
+    "excluded_holdings": []
+  },
+  "cashflow": {
+    "months": [
+      "2026-04",
+      "2026-05",
+      "2026-06",
+      "2026-07",
+      "2026-08",
+      "2026-09"
+    ],
+    "monthly_income": {
+      "2026-04": 10400.0,
+      "2026-05": 10400.0,
+      "2026-06": 10400.0,
+      "2026-07": 10400.0,
+      "2026-08": 10400.0,
+      "2026-09": 10400.0
+    },
+    "monthly_spend": {
+      "2026-04": 3417.99,
+      "2026-05": 3597.44,
+      "2026-06": 4156.3,
+      "2026-07": 2997.02,
+      "2026-08": 3576.42,
+      "2026-09": 3642.15
+    },
+    "avg_monthly_income": 10400.0,
+    "avg_monthly_spend": 3564.55,
+    "savings_rate": 0.6573,
+    "top_spend_categories": {
+      "housing": 12600.0,
+      "groceries": 3033.95,
+      "dining": 1724.74,
+      "shopping": 1586.74,
+      "utilities": 1533.16,
+      "transport": 908.73
+    },
+    "liquid_assets": 46800.0,
+    "cash_buffer_months": 13.05,
+    "transaction_count": 126
+  },
+  "risk": {
+    "value": 0.0,
+    "band": "low",
+    "drivers": [],
+    "previous_value": null,
+    "previous_band": null,
+    "delta": null
+  },
+  "anomalies": [],
+  "recommendations": [
+    {
+      "id": "R1",
+      "priority": "P3",
+      "category": "general",
+      "action": "No action required. Maintain the current plan and keep the regular review cadence.",
+      "rationale": "No material findings in this run.",
+      "linked_findings": [],
+      "requires_approval": false
+    }
+  ],
+  "narrative": "Sofia's overall risk is LOW (score 0/100). No material anomalies or risk signals were detected. Most urgent action (P3): No action required. Maintain the current plan and keep the regular review cadence.",
+  "narrative_source": "template",
+  "review": {
+    "required": false
+  },
+  "analysis_notes": [],
+  "data_quality": [],
+  "degraded_sources": [],
+  "execution_trace": [
+    {
+      "step": "fetch",
+      "agent": "data_fetcher",
+      "status": "ok",
+      "started_at": "2026-10-15T01:54:48.930+00:00",
+      "duration_ms": 6.29,
+      "warnings": [],
+      "error": null
+    },
+    {
+      "step": "analyze",
+      "agent": "analyzer",
+      "status": "ok",
+      "started_at": "2026-10-15T01:54:48.937+00:00",
+      "duration_ms": 2.85,
+      "warnings": [],
+      "error": null
+    },
+    {
+      "step": "advise",
+      "agent": "advisor",
+      "status": "ok",
+      "started_at": "2026-10-15T01:54:48.940+00:00",
+      "duration_ms": 0.46,
+      "warnings": [],
+      "error": null
+    }
+  ],
+  "error": null
+}
